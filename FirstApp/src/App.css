@@ -1,0 +1,21 @@
+.blog{
+    color: purple;
+    font-size: 30px;
+    font-weight: bold;
+}
+.card{
+    height: 200px;
+    width: 300px;
+    border: 2px solid black;
+    box-shadow: 5px 5px 10px grey;
+    /* margin: 20px; */
+    padding: 10px;
+
+}
+.cardbox{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin:auto;
+    width:90%
+}
