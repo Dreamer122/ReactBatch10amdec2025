@@ -29,7 +29,7 @@ export const Blog = () => {
 
       </div>
       <div>
-        <h3>Mapping card through array </h3>
+        <h3>Mapping card through array  hello</h3>
 {/*  mapping an array */}
 {
   array_of_content.map((v,i)=>{
