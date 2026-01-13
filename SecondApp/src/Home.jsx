@@ -9,6 +9,10 @@ export const Home = () => {
 //  filter data function
 const filterData=(e)=>{
     setSearchText(e.target.value)
+    if(searchtext===""){
+        setFilterProducts(products)
+        return
+    }
     const f=products.filter((prd)=>prd.title.toLowerCase().includes(searchtext.toLowerCase()))
     setFilterProducts(f)
 
@@ -24,6 +28,9 @@ const getdata=()=>{
     setFilterProducts(data)});
 
 } 
+// 10 -> 2 
+// original -> 10
+// filter -> 10
 useEffect(()=>{
     getdata()
 },[])
