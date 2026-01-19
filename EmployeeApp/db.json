@@ -1,0 +1,20 @@
+{
+    "employees":[
+        {
+            "id":1,
+            "name":"John Doe",
+            "designation":"Software Engineer",
+            "salary":60000,
+            "phone":"123-456-7890",
+            "email":"JohnDoe@gmail.com"
+        },
+        {
+            "id":2,
+            "name":"Jane Smith",
+            "designation":"Product Manager",
+            "salary":75000,
+            "phone":"987-654-3210",
+            "email":"JaneSmith@gmail.com"
+        }
+    ]
+}
