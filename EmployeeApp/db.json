@@ -5,16 +5,16 @@
       "name": "John Doe",
       "designation": "Software Engineer",
       "salary": 60000,
-      "phone": "123-456-7890",
+      "phone": "1234567890",
       "email": "JohnDoe@gmail.com"
     },
     {
-      "id": "2",
       "name": "Jane Smith",
       "designation": "Product Manager",
-      "salary": 75000,
-      "phone": "987-654-3210",
-      "email": "JaneSmith@gmail.com"
+      "salary": "80000",
+      "email": "JaneSmith@gmail.com",
+      "phone": "9876543210",
+      "id": "2"
     },
     {
       "id": "a63b",
@@ -22,6 +22,14 @@
       "designation": "Web developer",
       "salary": "40000",
       "email": "Zuber@gmail.com",
+      "phone": "1234567890"
+    },
+    {
+      "id": "5c5f",
+      "name": "monika",
+      "designation": "data analyst",
+      "salary": "50000",
+      "email": "monika@gmail.com",
       "phone": "1234567890"
     }
   ]

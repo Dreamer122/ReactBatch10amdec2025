@@ -1,4 +1,5 @@
 import { useEffect ,useState} from 'react'
+import { Link } from 'react-router'
 
 export const Home = () => {
     const [emp,setEmp]=useState([])
@@ -55,7 +56,7 @@ email
 
                                     <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
                 <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                    {obj.id}
+                    {index+1}
                 </th>
                 <td class="px-6 py-4">
                 {obj.name}
@@ -72,9 +73,9 @@ email
                 </td>
 
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
-                    <a href="#" class="font-medium text-fg-brand hover:underline">View</a>
-                    <a href="#" class="font-medium text-fg-brand hover:underline">Delete</a>
+                    <Link to={`/editemployee/${obj.id}`} class="font-medium text-fg-brand py-2 px-3 rounded bg-violet-600 text-white font-bold mx-2 ">Edit</Link>
+                    <Link to={"/viewemployee"} class="font-medium text-fg-brand py-2 px-3 rounded bg-green-600 text-white font-bold mx-2 ">View</Link>
+                    <Link  class="font-medium text-fg-brand py-2 px-3 rounded bg-red-600 text-white font-bold mx-2 ">Delete</Link>
               
                 </td>
             </tr>
