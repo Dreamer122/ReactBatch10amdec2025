@@ -11,6 +11,21 @@ export const Home = () => {
          setEmp(data)
     }
 
+    // delete function
+    const deleteEmp=async(id)=>{
+
+        const res=confirm("Are you sure you want to delete this employee?")
+        if(res){
+        await fetch(`http://localhost:8080/employees/${id}`,{
+            method:"DELETE"
+        })
+         getAllemployees()
+
+        }
+       
+
+    }
+
     useEffect(()=>{
         getAllemployees()
     },[])
@@ -54,7 +69,7 @@ email
                 emp.map((obj,index)=>{
                     return(
 
-                                    <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+                                    <tr key={obj.id} class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
                 <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
                     {index+1}
                 </th>
@@ -74,8 +89,8 @@ email
 
                 <td class="px-6 py-4">
                     <Link to={`/editemployee/${obj.id}`} class="font-medium text-fg-brand py-2 px-3 rounded bg-violet-600 text-white font-bold mx-2 ">Edit</Link>
-                    <Link to={"/viewemployee"} class="font-medium text-fg-brand py-2 px-3 rounded bg-green-600 text-white font-bold mx-2 ">View</Link>
-                    <Link  class="font-medium text-fg-brand py-2 px-3 rounded bg-red-600 text-white font-bold mx-2 ">Delete</Link>
+                    <Link to={`/viewemployee/${obj.id}/${obj.name}`} class="font-medium text-fg-brand py-2 px-3 rounded bg-green-600 text-white font-bold mx-2 ">View</Link>
+                    <Link onClick={()=>deleteEmp(obj.id)}  class="font-medium text-fg-brand py-2 px-3 rounded bg-red-600 text-white font-bold mx-2 ">Delete</Link>
               
                 </td>
             </tr>

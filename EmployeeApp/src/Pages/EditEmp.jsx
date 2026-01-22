@@ -2,6 +2,7 @@ import React ,{useEffect,useState} from 'react'
 import { useParams ,useNavigate} from 'react-router'
 import { Employee } from '../Components/Employee'
 import toast from 'react-hot-toast';
+import { getdata } from '../utils/getData';
 
 export const EditEmp = () => {
   const {id}=useParams()
@@ -11,9 +12,7 @@ export const EditEmp = () => {
 
   // get user data 
   const getEmployee=async()=>{
-    const res=await fetch(`http://localhost:8080/employees/${id}`)
-    const data=await res.json()
-    console.log(data)
+    const data=await getdata(id);
     setEmpdata(data)
   }
   useEffect(()=>{
