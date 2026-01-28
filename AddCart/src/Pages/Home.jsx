@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Card } from '../Components/Card';
 import { CategorySection } from '../Components/CategorySection';
-export const Home = () => {
+export const Home = ({addcart}) => {
     const [Alldata,setAllData]=useState([]);
 
     const getdata=async()=>{
@@ -17,8 +17,7 @@ export const Home = () => {
 
   return (
 <>
-<CategorySection/>
-
+{/* <CategorySection/> */}
 
 
 <h2  className='text-center text-4xl text-pink-700 my-4'> All Products</h2>
@@ -26,8 +25,9 @@ export const Home = () => {
 
 {
     Alldata?.map((prd,i)=>{
+        prd.qty=1
         return (
-            <Card prd={prd} key ={prd.id}/>
+            <Card prd={prd} key ={prd.id} addcart={addcart}/>
         )
 
     })
