@@ -1,10 +1,11 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,useRef} from 'react'
 import { useParams } from 'react-router'
 
 export const PrdDesc = ({addcart}) => {
   const {id,title}=useParams()
   const [product,setProduct]=useState({})
+  const imageref=useRef(null)
 
   // [GET] https://api.escuelajs.co/api/v1/products/4
   const getSingleProduct=async()=>{
@@ -14,6 +15,12 @@ export const PrdDesc = ({addcart}) => {
     prd.qty=1
     setProduct(prd)
   }
+
+// get url
+const geturl=(url)=>{
+  imageref.current.src=url
+}
+
   useEffect(()=>{
     getSingleProduct()
   },[id])
@@ -24,7 +31,20 @@ export const PrdDesc = ({addcart}) => {
       <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
         <div className="shrink-0 max-w-md lg:max-w-lg mx-auto">
           {/* <img className="w-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" /> */}
-          <img className="w-full hidden dark:block" src={product?.images?.[0]} alt="" />
+          <img className="w-full hidden dark:block" ref={imageref} src={product?.images?.[0]} alt="" />
+        <div className='flex gap-3 my-2 justify-around'>
+          {
+            product.images?.map((src,i)=>{
+              return (
+                <div key={i}>
+                  <img src={src} style={{width:"100px",height:"100px"}} onClick={()=>geturl(src)}></img>
+                  </div>
+              )
+
+            })
+          }
+        </div>
+        
         </div>
 
         <div className="mt-6 sm:mt-8 lg:mt-0">
