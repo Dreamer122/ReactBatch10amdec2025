@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
  export const ProviderFunction=({children})=>{
     // console.log("child",children)
+    const [isLogin,setIslogin]=useState(localStorage.getItem("isLogin") || false)
     const [Cart,setCart]=useState([])
 
     const addCart=(prd)=>{
@@ -62,10 +63,15 @@ const removeproduct=(id)=>{
   const array=Cart.filter((obj)=>obj.id!=id)
   setCart([...array])
 }
+const logout=()=>{
+  localStorage.removeItem("isLogin")
+  setIslogin(false)
+  toast.success("logout successful")
+}
 
     return(
 <>
-<Cartcontext.Provider value={{Cart,setCart,addCart,incquantity,decquantity,removeproduct}}>
+<Cartcontext.Provider value={{Cart,setCart,addCart,incquantity,decquantity,removeproduct,setIslogin,isLogin,logout}}>
 {children}
 </Cartcontext.Provider>
 

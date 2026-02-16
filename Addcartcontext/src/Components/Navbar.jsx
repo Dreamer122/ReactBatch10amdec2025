@@ -3,7 +3,7 @@ import {Link} from "react-router"
 import { useContext } from 'react'
 import { Cartcontext } from '../context/Cartcontext'
 export const Navbar = () => {
-  const {Cart}=useContext(Cartcontext)
+  const {Cart,isLogin,logout}=useContext(Cartcontext)
   return (
     <>
     
@@ -26,10 +26,13 @@ export const Navbar = () => {
           <Link to={"/cart"} className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent relative ">cart <span className='bg-blue-800 -z-1 text-white block absolute px-3 py-1 rounded-full -top-4 left-4'>{Cart.length}</span></Link>
         </li>
         <li>
-          <Link href="#" className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Services</Link>
+          <Link to={"/login"} className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Loginform</Link>
         </li>
         <li>
-          <Link href="#" className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Pricing</Link>
+          {
+            isLogin ? <button onClick={logout} className='px-3 py-2 rounded bg-red-600 text-white'>Logout</button>:""
+           
+          }
         </li>
         <li>
           <Link href="#" className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Contact</Link>

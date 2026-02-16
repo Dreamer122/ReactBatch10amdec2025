@@ -6,6 +6,8 @@ import { Navbar } from "./Components/Navbar"
 import { CartPage } from "./Pages/CartPage"
 import { ProductDesc } from "./Pages/ProductDesc"
 import { Toaster } from "react-hot-toast"
+import { Loginform } from "./Pages/Loginform"
+import { ProtectedRoute } from "./Components/ProtectedRoute"
 function App(){
   return(
     <>
@@ -16,8 +18,9 @@ function App(){
     <Routes>
       <Route path="/" element={<Home></Home>}></Route>
       <Route path="/category/:name/:id" element={<Productbycat></Productbycat>}></Route>
-    <Route path="/cart" element={<CartPage/>}/>
+    <Route path="/cart" element={ <ProtectedRoute> <CartPage/> </ProtectedRoute> }/>
     <Route path="/category/:catname/:catid/:title/:id" element={<ProductDesc/>}/>
+    <Route path="/login" element={<Loginform/>}/>
     </Routes>
     <Toaster/>
     </BrowserRouter>
