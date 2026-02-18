@@ -1,9 +1,10 @@
 import React from 'react'
 import {Link} from "react-router"
 import { useContext } from 'react'
-import { Cartcontext } from '../context/Cartcontext'
+import { Cartcontext, LoginContext } from '../context/Cartcontext'
 export const Navbar = () => {
-  const {Cart,isLogin,logout}=useContext(Cartcontext)
+  const {Cart}=useContext(Cartcontext)
+  const {isLogin,logout}=useContext(LoginContext)
   return (
     <>
     
@@ -35,7 +36,7 @@ export const Navbar = () => {
           }
         </li>
         <li>
-          <Link href="#" className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Contact</Link>
+          <Link to={"/service"} className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Service</Link>
         </li>
       </ul>
     </div>

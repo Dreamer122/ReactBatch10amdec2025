@@ -1,10 +1,9 @@
 import { useState,useEffect } from "react";
 import { Cartcontext} from "./Cartcontext";
-import axios from "axios";
+import { LoginContext } from "./Cartcontext";
 import toast from "react-hot-toast";
  export const ProviderFunction=({children})=>{
     // console.log("child",children)
-    const [isLogin,setIslogin]=useState(localStorage.getItem("isLogin") || false)
     const [Cart,setCart]=useState([])
 
     const addCart=(prd)=>{
@@ -63,18 +62,32 @@ const removeproduct=(id)=>{
   const array=Cart.filter((obj)=>obj.id!=id)
   setCart([...array])
 }
-const logout=()=>{
-  localStorage.removeItem("isLogin")
-  setIslogin(false)
-  toast.success("logout successful")
-}
+
 
     return(
 <>
-<Cartcontext.Provider value={{Cart,setCart,addCart,incquantity,decquantity,removeproduct,setIslogin,isLogin,logout}}>
+<Cartcontext.Provider value={{Cart,setCart,addCart,incquantity,decquantity,removeproduct}}>
 {children}
 </Cartcontext.Provider>
 
 </>
     )
+ }
+
+
+ export const LoginProvider=({children})=>{
+    const [isLogin,setIslogin]=useState(localStorage.getItem("isLogin") || false)
+
+    const logout=()=>{
+  localStorage.removeItem("isLogin")
+  setIslogin(false)
+  toast.success("logout successful")
+  
+}
+
+return (
+  <LoginContext.Provider value={{isLogin,setIslogin,logout}}>
+    {children}
+  </LoginContext.Provider>
+)
  }

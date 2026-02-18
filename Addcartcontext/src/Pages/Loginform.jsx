@@ -1,9 +1,9 @@
 import React ,{useState}from 'react'
 import toast from 'react-hot-toast'
 import { useContext } from 'react'
-import { Cartcontext } from '../context/Cartcontext'
+import {  LoginContext } from '../context/Cartcontext'
 export const Loginform = () => {
-const {setIslogin}=useContext(Cartcontext)
+const {setIslogin}=useContext(LoginContext)
     const [formdata,setFormdata]=useState({
         email:"",
         password:""

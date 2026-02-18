@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getData } from '../utils/Commonfunction'
 import { useParams,Link } from 'react-router'
 import { Productcard } from '../Components/Productcard'
-export const Productbycat = () => {
+ const Productbycat = () => {
     const [product,setProduct]=useState([])
     const {name,id}=useParams()
     const getcat=async()=>{
@@ -30,3 +30,4 @@ if(product.length==0){
    </>
   )
 }
+export default Productbycat
