@@ -13,6 +13,7 @@ import { Service } from "./Pages/Service"
 import { useOnline } from "./utils/useOnline"
 import { lazy ,Suspense} from "react"
 const Productbycat=lazy(()=>import("./Pages/Productbycat"))
+import { Reducerhook } from "./Pages/Reducerhook"
 function App(){
   const isonline=useOnline()
   if(!isonline){
@@ -31,6 +32,7 @@ function App(){
     <Route path="/category/:catname/:catid/:title/:id" element={<ProductDesc/>}/>
     <Route path="/login" element={<Loginform/>}/>
     <Route path="/service" element={<Service/>}/>
+    <Route path="/hooks" element={<Reducerhook/>}/>
     </Routes>
     <Toaster/>
     </BrowserRouter>
