@@ -4,7 +4,9 @@ import toast from 'react-hot-toast'
 import { account } from '../appwrite/config'
 import { ID } from 'appwrite'
 import { createUser } from '../appwrite/services'
+import { useNavigate } from 'react-router'
 export const Signup = () => {
+    const navigate=useNavigate()
     const {register,handleSubmit}=useForm()
     const signup=async(data)=>{
 
@@ -19,6 +21,7 @@ export const Signup = () => {
 
     // add user data to usercollection
     createUser(data,user.$id)
+    navigate("/login")
     toast.success("usercreated successfully")
     
 } catch (e){
