@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { getuserdata } from '../../appwrite/services'
-import {  useParams } from 'react-router'
+import { getuserdata,getalluserpost } from '../../appwrite/services'
+import {  Link, useParams } from 'react-router'
 
 export const Main = () => {
      const {id}=useParams()
         const [user,setUser]=useState({})
+        const [posts,setPosts]=useState([])
     
         // get userdata
         const get=async()=>
         {
             let users=await getuserdata(id)
             setUser(users[0])
-
-        }
+        let userposts=await getalluserpost(id)
+          setPosts(userposts.rows)
+      
+          }
         useEffect(()=>{
            get()
         },[])
@@ -70,25 +73,24 @@ export const Main = () => {
 
           <div className="space-y-4">
 
-            <div className="bg-white p-5 rounded-xl shadow-sm flex justify-between items-center">
-              <div>
-                <h4 className="text-lg font-serif text-[#3e2c2c]">
-                  Ek Adhoori Kahani
-                </h4>
-                <p className="text-sm text-[#7a6c6c]">
-                  March 3, 2026
-                </p>
-              </div>
-
-              <div className="space-x-4 text-sm">
-                <button className="text-[#e8a0a8] hover:underline">
-                  Edit
-                </button>
-                <button className="text-red-400 hover:underline">
-                  Delete
-                </button>
-              </div>
-            </div>
+           {/* posts */}
+            {
+              posts?.map((p,i)=>{
+                return (
+           <div key={p.$id}>
+ <img src={p?.thumbnail} alt="" className="h-16 w-16 rounded full" />
+          <p>{p?.category}</p>
+          <p>{p?.title}</p>
+          <div>
+            <Link to={`/dashboard/${id}/editpost/${p.$id}`} className='px-3 py-2 rounded bg-blue-500 text-white' >Edit </Link>
+            <Link to={`/post/${p.$id}/${p.category}`} className='px-3 py-2 rounded bg-green-500 text-white'  >View </Link>
+            <button className='px-3 py-2 rounded bg-red-500 text-white' >Delete</button>
+          </div>
+           </div>
+                )
+              })
+            }
+           
 
           </div>
         </div>

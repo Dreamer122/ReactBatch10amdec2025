@@ -10,6 +10,9 @@ import Nav from './components/Nav'
 import { Dashboard } from './pages/Dashboard'
 import { Main } from './components/dashboard/Main'
 import { Profile } from './components/dashboard/Profile'
+import { CreatePost } from './components/dashboard/CreatePost'
+import { Editpost } from './components/dashboard/Editpost'
+import { ViewPost } from './pages/ViewPost'
 const App = () => {
   return (
    <>
@@ -23,7 +26,12 @@ const App = () => {
     <Route path='/dashboard/:id' element={<Dashboard/>}>
     <Route  index element={<Main/>}></Route>
     <Route path='/dashboard/:id/profile' index element={<Profile/>}></Route>
+    <Route path='/dashboard/:id/createpost'  element={<CreatePost/>}></Route>
+    <Route path='/dashboard/:id/editpost/:postid'  element={<Editpost/>}></Route>
+    
     </Route>
+    <Route path='/post/:postid/:category' element={<ViewPost/>}/>
+
 
    </Routes>
    <Toaster/>

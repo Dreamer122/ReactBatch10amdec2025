@@ -13,7 +13,7 @@ export const Sidebar = () => {
         <nav  className="space-y-4 text-[#3e2c2c]">
           <Link to={`/dashboard/${session?.userId}/`} className="block hover:text-[#e8a0a8]">Dashboard</Link>
           <Link href="#" className="block hover:text-[#e8a0a8]">My Posts</Link>
-          <Link href="#" className="block hover:text-[#e8a0a8]">Create Post</Link>
+          <Link to={`/dashboard/${session?.userId}/createpost`} className="block hover:text-[#e8a0a8]">Create Post</Link>
           <Link to={`/dashboard/${session?.userId}/profile`} className="block hover:text-[#e8a0a8]">Profile</Link>
           <Link href="#" className="block text-red-400 hover:underline">Logout</Link>
         </nav>

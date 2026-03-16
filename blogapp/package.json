@@ -19,6 +19,7 @@
     "react-hot-toast": "^2.6.0",
     "react-redux": "^9.2.0",
     "react-router": "^7.13.1",
+    "suneditor-react": "^3.6.1",
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {

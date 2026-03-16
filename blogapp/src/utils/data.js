@@ -1,0 +1,22 @@
+export const postCategories = [
+  "Technology",
+  "Web Development",
+  "Digital Marketing",
+  "Data Analytics",
+  "UI/UX Design",
+  "Artificial Intelligence",
+  "Machine Learning",
+  "Programming",
+  "Career Guidance",
+  "Education",
+  "Business",
+  "Startups",
+  "Finance",
+  "Health & Fitness",
+  "Travel",
+  "Food",
+  "Lifestyle",
+  "Entertainment",
+  "News",
+  "Product Reviews"
+];
