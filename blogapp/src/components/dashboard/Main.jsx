@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { getuserdata,getalluserpost } from '../../appwrite/services'
+import { getuserdata,getalluserpost ,deletePost} from '../../appwrite/services'
 import {  Link, useParams } from 'react-router'
+import toast from 'react-hot-toast'
 
 export const Main = () => {
      const {id}=useParams()
@@ -15,6 +16,18 @@ export const Main = () => {
         let userposts=await getalluserpost(id)
           setPosts(userposts.rows)
       
+          }
+
+          // delete post
+          const deleteblogpost=(id)=>{
+            const check=confirm("are you sure?")
+            if(check){
+
+              deletePost(id)
+              get()
+              toast.success("post deleted successfully")
+            }
+
           }
         useEffect(()=>{
            get()
@@ -84,7 +97,7 @@ export const Main = () => {
           <div>
             <Link to={`/dashboard/${id}/editpost/${p.$id}`} className='px-3 py-2 rounded bg-blue-500 text-white' >Edit </Link>
             <Link to={`/post/${p.$id}/${p.category}`} className='px-3 py-2 rounded bg-green-500 text-white'  >View </Link>
-            <button className='px-3 py-2 rounded bg-red-500 text-white' >Delete</button>
+            <button onClick={()=>deleteblogpost(p.$id)} className='px-3 py-2 rounded bg-red-500 text-white' >Delete</button>
           </div>
            </div>
                 )

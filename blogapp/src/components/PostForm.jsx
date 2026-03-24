@@ -8,7 +8,7 @@ import { useSelector ,useDispatch} from 'react-redux';
 import { isLoading } from '../redux/loginSlice';
 import { useParams ,useNavigate} from 'react-router';
 
-export const PostForm = ({submitfun,defaultvalue=null}) => {
+export const PostForm = ({submitfun,defaultvalue=null,isEdit}) => {
     const {loading}=useSelector((state)=>state.blog)
 const navigate=useNavigate()
     const dispatch=useDispatch()
@@ -17,17 +17,23 @@ const navigate=useNavigate()
         defaultValues:defaultvalue
     })
     const [prev,setPrev]=useState("")
+    const [editorContent, setEditorContent] = useState("")
 const thumbnail=watch("thumbnail")
     const handlecontent=(content)=>{
+        setEditorContent(content)
         setValue("description",content)
 
     }
-    const description=watch("description")
 
 const  blogpost=async(data)=>{
     dispatch(isLoading(true))
-   submitfun(data,id)
+  if(isEdit){
+    submitfun(defaultvalue.$id,data)
+    toast.success("post updated successfully")
+  }else{
+    submitfun(data,id)
    toast.success("blog post created")
+  }
    
    dispatch(isLoading(false))
    navigate(`/dashboard/${id}/`)
@@ -48,8 +54,9 @@ const  blogpost=async(data)=>{
     useEffect(()=>{
         if(defaultvalue){
             setPrev(defaultvalue.thumbnail)
+            setEditorContent(defaultvalue.description) // ✅ important
+            // setValue("description", defaultvalue.description)
             reset(defaultvalue)
-            // setValue("description",defaultvalue.description)
         }
     },[defaultvalue,reset])
   return (
@@ -80,7 +87,7 @@ const  blogpost=async(data)=>{
 <label htmlFor="">Blog Content</label>
  <SunEditor  placeholder="Please type here..."
  onChange={handlecontent}
-//  defaultValue={defaultvalue || ""}
+  setContents={editorContent}   
  height='300px'
  width='500px'
   setOptions={{
@@ -99,7 +106,10 @@ const  blogpost=async(data)=>{
     <option value="publish">publish</option>
 </select> <br />
 
-<input type="submit" disabled={loading}  value={loading?"creating...":"create post"} className='border' />
+<input type="submit" disabled={loading}  value={
+    isEdit?loading?"updating...":"Update Post":
+    loading?"creating...":"create post"
+    } className='border' />
         </form>
     </div>
    </div>

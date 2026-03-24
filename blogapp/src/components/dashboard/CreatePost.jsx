@@ -6,7 +6,7 @@ export const CreatePost = () => {
     <>
     <div>
         <h2>Create Post</h2>
-        <PostForm submitfun={CreateBlog}/>
+        <PostForm submitfun={CreateBlog} isEdit={false}/>
     </div>
     </>
   )

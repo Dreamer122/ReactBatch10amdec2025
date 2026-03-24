@@ -181,14 +181,48 @@ return userposts
 
 export const updatesinglenpost=async(docid,data)=>{
     try{
+        let thumbnail=""
+        if(data.thumbnail[0] instanceof File){
+            const res=await storage.createFile({
+    bucketId: bid,
+    fileId: ID.unique(),
+    file: data.thumbnail[0]
+})
+     
+
+      thumbnail= storage.getFileView({
+              bucketId: bid,
+              fileId: res.$id
+            });
+    console.log("image res=",res)
+
+
+        }
+
+        let d={}
+        if(thumbnail){
+            d.thumbnail=thumbnail,
+          d.title=data.title,
+          d.description=data.description,
+          d.category=data.category,
+          d.status=data.status
+
+        }
+        else{
+            d.title=data.title,
+          d.description=data.description,
+          d.category=data.category,
+          d.status=data.status
+        }
+
 
           const updateddata= await tablesDB.updateRow(
-   db,
+    db,
     posttable,
     docid,
      
     {
-        ...data
+        ...d
        
      }
 );
@@ -215,4 +249,20 @@ return d
     }
 
 
+}
+
+// delete a post
+export const deletePost=async(rowid)=>{
+    try{
+        const result = await tablesDB.deleteRow({
+    databaseId: db,
+    tableId: posttable,
+    rowId: rowid
+  
+});
+console.log("deleted post=",result)
+    }
+    catch(error){
+        console.log("error occured while deleting post"+error)
+    }
 }

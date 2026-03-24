@@ -20,7 +20,7 @@ export const Editpost = () => {
   return (
    <>
    <h2>Edit post</h2>
-   <PostForm submitfun={updatepost} defaultvalue={singlePost}></PostForm>
+   <PostForm submitfun={updatepost} isEdit={true} defaultvalue={singlePost}></PostForm>
    </>
   )
 }
